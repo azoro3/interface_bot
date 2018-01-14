@@ -94,23 +94,5 @@ public class DiscordBot extends ListenerAdapter {
 
         }
     }
-    private String getRequest(String path, String query) throws URISyntaxException, IOException {
-        String response = "";
-
-
-        URI uri = new URI("http", "priceapi", path, null);
-        URL url = uri.toURL();
-        URLConnection conn = url.openConnection();
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                conn.getInputStream()));
-
-        String inputLine;
-        while ((inputLine = br.readLine()) != null) {
-            response += inputLine;
-        }
-        br.close();
-
-        return response;
-    }
 
 }

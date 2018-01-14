@@ -1,7 +1,11 @@
 package bot;
 
+import interpreter.Interpreter;
 import io.sgr.urlshortener.google.GoogleURLShortener;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -28,10 +32,12 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
  *
  * @author Arthur
  */
-public class TelegramBot extends TelegramLongPollingBot {
+public class TelegramBot extends TelegramLongPollingBot implements Observer {
 
     JSONObject result = new JSONObject();
+    Interpreter interpreter = new Interpreter();
     String msg;
+    long chat_id;
 
     @Override
     public String getBotToken() {
@@ -43,61 +49,12 @@ public class TelegramBot extends TelegramLongPollingBot {
         // We check if the update has a message and the message has text
         if (update.hasMessage() && update.getMessage().hasText()) {
             // Set variables
-            final long chat_id = update.getMessage().getChatId();
+            chat_id = update.getMessage().getChatId();
             msg = update.getMessage().getText();
 
-            Boolean isCallingBot = msg.toUpperCase().startsWith("PRICE ");
-
-            if (msg.length() > 6) {
-                msg = msg.substring(6, msg.length());
-            }
-
-            try {
-                //JSON here
-                String ur = "http://localhost:8080/pricebot-0.0.1-SNAPSHOT/price/" + msg;
-
-                OkHttpClient okhttpClient = new OkHttpClient();
-                Request getRequest = new Request.Builder().url(ur).build();
-                okhttpClient.newCall(getRequest).enqueue(new Callback() {
-                    public void onFailure(Call call, IOException ioe) {
-                        System.out.println(ioe.getMessage());
-                    }
-
-                    public void onResponse(Call call, Response rspns) throws IOException {
-                        String body = rspns.body().string();
-                        System.out.println(body);
-
-                        result = new JSONObject(body);
-
-                        JSONArray tab = result.getJSONArray("products");
-
-                        String prices = "";
-                        for (int i = 0; i < tab.length(); i++) {
-                            JSONObject obj = (JSONObject) tab.get(i);
-                            JSONArray tabOffers = obj.getJSONArray("offers");
-                            for (int j = 0; j < tabOffers.length(); j++) {
-                                JSONObject article = (JSONObject) tabOffers.get(j);
-                                Object res = article.get("url");
-                                GoogleURLShortener shortener = new GoogleURLShortener();
-                                String shortUrl = shortener.shortenURL("<some_origin>", "AIzaSyAjSBCl4HtD6yy-2n-pi0AX3w-S87EauxI", res.toString());
-                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + shortUrl + "\n";
-                                SendMessage message = new SendMessage() // Create a message object object
-                                        .setChatId(chat_id)
-                                        .setText(prices);
-                                try {
-                                    execute(message); // Sending our message object to user
-                                } catch (TelegramApiException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                        }
-
-                    }
-                });
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            if(interpreter.isCallingBot(msg)){
+                interpreter.addObserver(this);
+                interpreter.parse(msg);
             }
 
         }
@@ -105,5 +62,19 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public String getBotUsername() {
         return "compare-bot";
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        String prices = (String)arg;
+        SendMessage message = new SendMessage() // Create a message object object
+                .setChatId(chat_id)
+                .setText(prices);
+        try {
+            execute(message); // Sending our message object to user
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
     }
 }

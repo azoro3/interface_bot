@@ -1,8 +1,11 @@
+package bot;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.InputStreamReader;
+import java.net.*;
+
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -20,6 +23,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,13 +34,14 @@ import org.json.JSONObject;
  * @author Arthur
  */
 public class DiscordBot extends ListenerAdapter {
-
+    JSONObject result = new JSONObject();
+    MessageChannel channel;
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         JDA jda = event.getJDA();
         User author = event.getAuthor();
         Message message = event.getMessage();
-        MessageChannel channel = event.getChannel();
+        channel = event.getChannel();
         String msg = message.getContentDisplay();
         Boolean isCallingBot = msg.toUpperCase().startsWith("PRICE ");
 
@@ -44,11 +49,12 @@ public class DiscordBot extends ListenerAdapter {
             msg = msg.substring(6, msg.length());
         }
         if (!event.getAuthor().isBot() && isCallingBot) {
-            JSONObject result = new JSONObject();
+
             try {
                 //JSON here
                 String ur = "http://localhost:8080/priceapi/price/" + msg;
-                System.out.println(ur);
+
+
                 OkHttpClient okhttpClient = new OkHttpClient();
                 Request getRequest =new Request.Builder().url(ur).build();
                 okhttpClient.newCall(getRequest).enqueue(new Callback() {
@@ -57,29 +63,54 @@ public class DiscordBot extends ListenerAdapter {
                     }
 
                     public void onResponse(Call call, Response rspns) throws IOException {
-                        String res =rspns.body().string();
-                        System.out.println(res);
+                        String body = rspns.body().string();
+
+
+
+                        result =  new JSONObject(body);
+
+                        JSONArray tab = result.getJSONArray("products");
+
+                        String prices = "";
+                        for (int i = 0; i < tab.length(); i++) {
+                            JSONObject obj = (JSONObject) tab.get(i);
+                            JSONArray tabOffers = obj.getJSONArray("offers");
+                            for (int j = 0; j < tabOffers.length(); j++) {
+                                JSONObject article = (JSONObject) tabOffers.get(j);
+                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + article.get("url") + "\n";
+                                channel.sendMessage(prices).queue();
+                            }
+
+                        }
+
                     }
                 });
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            JSONArray tab = result.getJSONArray("products");
 
-            String prices = "";
-            for (int i = 0; i < tab.length(); i++) {
-                JSONObject obj = (JSONObject) tab.get(i);
-                JSONArray tabOffers = obj.getJSONArray("offers");
-                for (int j = 0; j < tabOffers.length(); j++) {
-                    JSONObject article = (JSONObject) tabOffers.get(j);
-                    prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + article.get("url") + "\n";
-                    channel.sendMessage(prices).queue();
-                }
 
-            }
-            // System.out.println(prices);
 
         }
     }
+    private String getRequest(String path, String query) throws URISyntaxException, IOException {
+        String response = "";
+
+
+        URI uri = new URI("http", "priceapi", path, null);
+        URL url = uri.toURL();
+        URLConnection conn = url.openConnection();
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+                conn.getInputStream()));
+
+        String inputLine;
+        while ((inputLine = br.readLine()) != null) {
+            response += inputLine;
+        }
+        br.close();
+
+        return response;
+    }
+
 }

@@ -72,6 +72,7 @@ public class Interpreter  extends Observable{
                     if(!outOfBand){
                         String key = listToken[index];
 
+
                         limit = Integer.parseInt(key);
                     }else{
                         errors += "aucun paramètre spécifié après l'identificateur limit\n\n";
@@ -84,7 +85,7 @@ public class Interpreter  extends Observable{
 
         }
 
-        if(message.isEmpty())
+        if(keywords.isEmpty())
             errors += "aucun mot-clé spécifié\n\n";
 
         if(errors.isEmpty()){

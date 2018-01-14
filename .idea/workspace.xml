@@ -50,14 +50,14 @@
       <file leaf-file-name="Interpreter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
+            <state relative-caret-position="186">
+              <caret line="87" column="19" lean-forward="false" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#686#687#0" expanded="true" />
                 <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#3085#3086#0" expanded="true" />
-                <element signature="e#3153#3154#0" expanded="true" />
+                <element signature="e#3087#3088#0" expanded="true" />
+                <element signature="e#3155#3156#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,7 +66,7 @@
       <file leaf-file-name="DiscordBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/DiscordBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
+            <state relative-caret-position="-267">
               <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="48" />
               <folding />
             </state>
@@ -86,7 +86,7 @@
       <file leaf-file-name="TelegramBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bot/TelegramBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
+            <state relative-caret-position="325">
               <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
               <folding />
             </state>
@@ -506,7 +506,7 @@
       <workItem from="1514970478010" duration="15000" />
       <workItem from="1514970567878" duration="419000" />
       <workItem from="1514975715700" duration="62000" />
-      <workItem from="1515954998707" duration="8317000" />
+      <workItem from="1515954998707" duration="9380000" />
     </task>
     <task id="LOCAL-00001" summary="connexion avec le serveur">
       <created>1515951946093</created>
@@ -529,11 +529,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515963548024</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix errors">
+      <created>1515963650815</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1515963650815</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20469000" />
+    <option name="totallyTimeSpent" value="21532000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,7 +598,8 @@
     <MESSAGE value="connexion avec le serveur" />
     <MESSAGE value="interpreter + java 8" />
     <MESSAGE value="interpreter + observable fonctionels" />
-    <option name="LAST_COMMIT_MESSAGE" value="interpreter + observable fonctionels" />
+    <MESSAGE value="fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -947,32 +955,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bot/DiscordBot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bot/TelegramBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="48" />
+        <state relative-caret-position="325">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bot/TelegramBot.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bot/DiscordBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="-267">
+          <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
+        <state relative-caret-position="186">
+          <caret line="87" column="19" lean-forward="false" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#686#687#0" expanded="true" />
             <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#3085#3086#0" expanded="true" />
-            <element signature="e#3153#3154#0" expanded="true" />
+            <element signature="e#3087#3088#0" expanded="true" />
+            <element signature="e#3155#3156#0" expanded="true" />
           </folding>
         </state>
       </provider>

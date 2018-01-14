@@ -1,10 +1,10 @@
 package bot;
 
+import io.sgr.urlshortener.google.GoogleURLShortener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
-
 
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
@@ -34,8 +34,10 @@ import org.json.JSONObject;
  * @author Arthur
  */
 public class DiscordBot extends ListenerAdapter {
+
     JSONObject result = new JSONObject();
     MessageChannel channel;
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         JDA jda = event.getJDA();
@@ -52,11 +54,10 @@ public class DiscordBot extends ListenerAdapter {
 
             try {
                 //JSON here
-                String ur = "http://localhost:8080/priceapi/price/" + msg;
-
+                String ur = "http://localhost:8080/pricebot-0.0.1-SNAPSHOT/price/" + msg;
 
                 OkHttpClient okhttpClient = new OkHttpClient();
-                Request getRequest =new Request.Builder().url(ur).build();
+                Request getRequest = new Request.Builder().url(ur).build();
                 okhttpClient.newCall(getRequest).enqueue(new Callback() {
                     public void onFailure(Call call, IOException ioe) {
                         System.out.println(ioe.getMessage());
@@ -65,9 +66,7 @@ public class DiscordBot extends ListenerAdapter {
                     public void onResponse(Call call, Response rspns) throws IOException {
                         String body = rspns.body().string();
 
-
-
-                        result =  new JSONObject(body);
+                        result = new JSONObject(body);
 
                         JSONArray tab = result.getJSONArray("products");
 
@@ -77,7 +76,10 @@ public class DiscordBot extends ListenerAdapter {
                             JSONArray tabOffers = obj.getJSONArray("offers");
                             for (int j = 0; j < tabOffers.length(); j++) {
                                 JSONObject article = (JSONObject) tabOffers.get(j);
-                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + article.get("url") + "\n";
+                                Object res = article.get("url");
+                                GoogleURLShortener shortener = new GoogleURLShortener();
+                                String shortUrl = shortener.shortenURL("<some_origin>", "AIzaSyAjSBCl4HtD6yy-2n-pi0AX3w-S87EauxI", res.toString());
+                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + shortUrl + "\n";
                                 channel.sendMessage(prices).queue();
                             }
 
@@ -89,8 +91,6 @@ public class DiscordBot extends ListenerAdapter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
 
         }
     }

@@ -13,7 +13,6 @@ public class mainBot extends ListenerAdapter {
 
     static String token = "MzkzMDM2MTI4MTUzNzYzODQw.DS4ecQ.4VFa7Yi3ElJecQXHu4r8tmMsJ64";
 
-
     public static void main(String[] args) {
         //Launch Discord
         try {

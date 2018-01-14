@@ -1,5 +1,6 @@
 package bot;
 
+import io.sgr.urlshortener.google.GoogleURLShortener;
 import java.io.IOException;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
@@ -53,7 +54,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             try {
                 //JSON here
-                String ur = "http://localhost:8080/priceapi/price/" + msg;
+                String ur = "http://localhost:8080/pricebot-0.0.1-SNAPSHOT/price/" + msg;
 
                 OkHttpClient okhttpClient = new OkHttpClient();
                 Request getRequest = new Request.Builder().url(ur).build();
@@ -64,6 +65,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                     public void onResponse(Call call, Response rspns) throws IOException {
                         String body = rspns.body().string();
+                        System.out.println(body);
 
                         result = new JSONObject(body);
 
@@ -75,10 +77,13 @@ public class TelegramBot extends TelegramLongPollingBot {
                             JSONArray tabOffers = obj.getJSONArray("offers");
                             for (int j = 0; j < tabOffers.length(); j++) {
                                 JSONObject article = (JSONObject) tabOffers.get(j);
-                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + article.get("url") + "\n";
+                                Object res = article.get("url");
+                                GoogleURLShortener shortener = new GoogleURLShortener();
+                                String shortUrl = shortener.shortenURL("<some_origin>", "AIzaSyAjSBCl4HtD6yy-2n-pi0AX3w-S87EauxI", res.toString());
+                                prices = " Prix : " + article.get("price") + " " + article.get("currency") + " lien : " + shortUrl + "\n";
                                 SendMessage message = new SendMessage() // Create a message object object
                                         .setChatId(chat_id)
-                                        .setText(msg);
+                                        .setText(prices);
                                 try {
                                     execute(message); // Sending our message object to user
                                 } catch (TelegramApiException e) {

@@ -15,20 +15,16 @@ import java.nio.charset.Charset;
 
 public class Interpreter {
 
+    public String getResult(String message) {
+        String result = "NOK";
 
+        Boolean isCallingBot = message.toUpperCase().startsWith("PRICE ");
 
-   public String getResult(String message){
-       String result = "NOK";
+        if (message.length() > 6) {
+            message = message.substring(6, message.length());
+        }
 
-       Boolean isCallingBot = message.toUpperCase().startsWith("PRICE ");
-
-       if (message.length() > 6) {
-           message = message.substring(6, message.length());
-       }
-
-
-
-       return "";
-   }
+        return "";
+    }
 
 }

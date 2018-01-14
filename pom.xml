@@ -46,6 +46,12 @@
             <artifactId>okhttp</artifactId>
             <version>3.9.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.sgr/urlshortener-google -->
+        <dependency>
+            <groupId>io.sgr</groupId>
+            <artifactId>urlshortener-google</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

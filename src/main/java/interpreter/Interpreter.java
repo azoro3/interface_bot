@@ -90,7 +90,8 @@ public class Interpreter  extends Observable{
         if(errors.isEmpty()){
              getResults(keywords.trim(),limit);
         }else{
-             //errors;
+             setChanged();
+             this.notifyObservers(errors);
         }
 
 

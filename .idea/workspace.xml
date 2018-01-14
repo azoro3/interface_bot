@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="684af5c5-5e47-4a5f-b005-fd409379052b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_retrofit2_converter_jackson_2_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_retrofit2_retrofit_2_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_sgr_urlshortener_google_1_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/DiscordBot.java" afterPath="$PROJECT_DIR$/src/main/java/bot/DiscordBot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bot/TelegramBot.java" afterPath="$PROJECT_DIR$/src/main/java/bot/TelegramBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java" afterPath="$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,14 +50,14 @@
       <file leaf-file-name="Interpreter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="19" />
+            <state relative-caret-position="375">
+              <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#686#687#0" expanded="true" />
                 <element signature="e#751#752#0" expanded="true" />
-                <element signature="e#3038#3039#0" expanded="true" />
-                <element signature="e#3106#3107#0" expanded="true" />
+                <element signature="e#3085#3086#0" expanded="true" />
+                <element signature="e#3153#3154#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -512,7 +506,7 @@
       <workItem from="1514970478010" duration="15000" />
       <workItem from="1514970567878" duration="419000" />
       <workItem from="1514975715700" duration="62000" />
-      <workItem from="1515954998707" duration="8203000" />
+      <workItem from="1515954998707" duration="8317000" />
     </task>
     <task id="LOCAL-00001" summary="connexion avec le serveur">
       <created>1515951946093</created>
@@ -528,11 +522,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515959857483</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="interpreter + observable fonctionels">
+      <created>1515963548024</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1515963548024</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20355000" />
+    <option name="totallyTimeSpent" value="20469000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,7 +590,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="connexion avec le serveur" />
     <MESSAGE value="interpreter + java 8" />
-    <option name="LAST_COMMIT_MESSAGE" value="interpreter + java 8" />
+    <MESSAGE value="interpreter + observable fonctionels" />
+    <option name="LAST_COMMIT_MESSAGE" value="interpreter + observable fonctionels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -963,14 +965,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/interpreter/Interpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="108" column="19" lean-forward="false" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="19" />
+        <state relative-caret-position="375">
+          <caret line="93" column="40" lean-forward="false" selection-start-line="93" selection-start-column="40" selection-end-line="93" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#686#687#0" expanded="true" />
             <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#3038#3039#0" expanded="true" />
-            <element signature="e#3106#3107#0" expanded="true" />
+            <element signature="e#3085#3086#0" expanded="true" />
+            <element signature="e#3153#3154#0" expanded="true" />
           </folding>
         </state>
       </provider>

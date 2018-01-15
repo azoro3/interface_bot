@@ -1,47 +1,32 @@
 package bot;
 
 import interpreter.Interpreter;
-import io.sgr.urlshortener.google.GoogleURLShortener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.*;
 import java.util.Observer;
 
-import javafx.beans.Observable;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Arthur
+ * @author Alexandre
+ * @author Alexandre
+ * @author Magalie
  */
 public class DiscordBot extends ListenerAdapter implements Observer {
-
 
     MessageChannel channel;
     Interpreter interpreter = new Interpreter();
 
+    /**
+     *
+     * @param event message receive on the channel
+     *
+     */
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         JDA jda = event.getJDA();
@@ -60,7 +45,7 @@ public class DiscordBot extends ListenerAdapter implements Observer {
 
     @Override
     public void update(java.util.Observable o, Object arg) {
-        String message = (String)arg;
+        String message = (String) arg;
         channel.sendMessage(message).queue();
     }
 }

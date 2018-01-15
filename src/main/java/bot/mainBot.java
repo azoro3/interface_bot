@@ -1,6 +1,5 @@
 package bot;
 
-import bot.DiscordBot;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -8,16 +7,23 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+/**
+ * 
+ * @author Arthur
+ * @author Alexandre
+ * @author Alexandre
+ * @author Magalie
+ */
 
 public class mainBot extends ListenerAdapter {
-
-    static String token = "MzkzMDM2MTI4MTUzNzYzODQw.DS4ecQ.4VFa7Yi3ElJecQXHu4r8tmMsJ64";
+    //Discord Token
+    static final String TOKEN = "MzkzMDM2MTI4MTUzNzYzODQw.DS4ecQ.4VFa7Yi3ElJecQXHu4r8tmMsJ64";
 
     public static void main(String[] args) {
         //Launch Discord
         try {
             JDA jda = new JDABuilder(AccountType.BOT)
-                    .setToken(token)
+                    .setToken(TOKEN)
                     .addEventListener(new DiscordBot())
                     .buildBlocking();
 

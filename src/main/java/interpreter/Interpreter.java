@@ -17,7 +17,6 @@ import java.util.Observable;
  * @author Alexandre
  * @author Magalie
  */
-
 public class Interpreter extends Observable {
 
     JSONObject result = new JSONObject();
@@ -79,10 +78,9 @@ public class Interpreter extends Observable {
             }
             index++;
 
-        }
-
-        if (message.isEmpty()) {
-            errors += "aucun mot-clÃ© spÃ©cifiÃ©\n\n";
+            if (keywords.isEmpty()) {
+                errors += "aucun mot-clés spécifié\n\n";
+            }
         }
 
         if (errors.isEmpty()) {

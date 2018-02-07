@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Observable;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -96,7 +97,10 @@ public class Interpreter extends Observable {
         try {
             String ur = "http://localhost:8080/priceapi/price/" + msg;
 
-            OkHttpClient okhttpClient = new OkHttpClient();
+            OkHttpClient okhttpClient = new OkHttpClient().newBuilder().connectTimeout(60000, TimeUnit.MILLISECONDS)
+                    .writeTimeout(60000, TimeUnit.MILLISECONDS)
+                    .readTimeout(60000, TimeUnit.MILLISECONDS)
+                    .build();
             Request getRequest = new Request.Builder().url(ur).build();
             okhttpClient.newCall(getRequest).enqueue(new Callback() {
                 public void onFailure(Call call, IOException ioe) {

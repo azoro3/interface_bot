@@ -79,7 +79,7 @@ public class Interpreter extends Observable {
             index++;
 
             if (keywords.isEmpty()) {
-                errors += "aucun mot-clés spécifié\n\n";
+                errors += "aucun mot-clÃ©s spÃ©cifiÃ©\n\n";
             }
         }
 
